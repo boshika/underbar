@@ -103,8 +103,22 @@
   };
 
   // Produce a duplicate-free version of the array.
+  // _.each([1,2,1,2,1], alert);
+//_.each({1:1, 2:3, 1:1}, alert);
+//result for object 1, and 3 is displayed
   _.uniq = function(array) {
-
+    var tempObject = {};
+      var newArray = [];
+      _.each(array, function(value) {
+                    tempObject[value]=value;
+      });  
+      //console.log(tempObject);
+      _.each(tempObject, function(value){
+                          newArray.push(value)
+      })
+      //console.log(newArray);
+      return newArray;
+  
   };
 
 
