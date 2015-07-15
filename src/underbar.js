@@ -171,15 +171,26 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
-    var result = accumulator;
-     //for(var i=0; i<collection.length; i++)
-      // {
-         _.each(collection, function(value) {result = iterator(value,result)})
-          
-      // }
-  return result;
+            if(accumulator == null)
+              { 
+                var result = collection.shift();     
+                 _.each(collection, function(value) 
+                               {
+                                 result = iterator(result, value);
+                               })   
+                }
+            else if (accumulator != null)
+             {
+                var result = accumulator;
+                _.each(collection, function(value) 
+                               {
+                                 result = iterator(result, value);
+                               })
+                }
+      return result;
   };
 
+  
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
     // TIP: Many iteration problems can be most easily expressed in
