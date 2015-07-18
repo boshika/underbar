@@ -245,13 +245,35 @@ _.some = function(collection, iterator) {
   //   }, {
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
-  _.extend = function(obj) {
 
+    _.extend = function(obj) {
+    //use arguments object to access obj
+      _.each(arguments, function(value) {         
+        //console.log(value);
+        _.each(value, function(value2, key) {
+          //console.log(value2, key)
+          obj[key] = value2
+        })
+      })
+      return obj;
   };
+  
+
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    //use arguments object to access obj
+      _.each(arguments, function(value) {         
+        //console.log(value);
+        _.each(value, function(value2, key) {
+          //console.log(value2, key)
+          if(obj[key] == undefined) { //!obj[key]
+          obj[key] = value2
+          }
+        })
+      })
+      return obj;
   };
 
 
