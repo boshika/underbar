@@ -347,7 +347,7 @@ _.some = function(collection, iterator) {
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
     var myArray = Array.prototype.slice.call(arguments, 0);  
-    //alternate method: could also create a new array with only lat tow elements(arguments,2) and pass it to func.apply directly, func.apply(this, myArray)
+    //alternate method: could also create a new array with only last two elements(arguments,2) and pass it to func.apply directly, func.apply(this, myArray)
     var myVar = setTimeout(function(){func.apply(this, arguments); }, wait, myArray[2], myArray[3]);
     return myVar;   
   };
@@ -363,6 +363,11 @@ _.some = function(collection, iterator) {
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+     var myArray = Array.prototype.slice.call(arguments, 0);
+      for(var i = input.length-1; i >=0; i--) {
+        Math.floor(Math.random()*(i+1));
+      }
+      return myArray;
   };
 
 
