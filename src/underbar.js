@@ -363,7 +363,16 @@ _.some = function(collection, iterator) {
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-    
+  var newArr = array.slice();
+  var i=array.length;
+  var temp, randomLoc;
+  while(--i > 0)  {
+    randomLoc = Math.floor(Math.random() * (i+1));
+    temp = newArr[randomLoc];
+    newArr[randomLoc] = newArr[i];
+    newArr[i] = temp;
+  }
+  return newArr;
   };
 
 
