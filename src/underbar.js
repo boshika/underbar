@@ -316,8 +316,28 @@ _.some = function(collection, iterator) {
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-  _.memoize = function(func) {
-  };
+ 
+    _.memoize = function(func) {    
+    // _.memoize should return a function that, when called, will check if it has
+  // already computed the result for the given argument and return that value
+  // instead if possible.
+  //use a object for caching
+    var cacheThis = {};
+    var result;
+    //var result;
+      return function(val) {
+        //result = func.apply(this, arguments);
+        if(cacheThis[val]) {
+          return cacheThis[val];
+        }
+          
+      else {
+        result = func.apply(this, arguments);
+        cacheThis[val] = result;
+        return result;
+        }
+      }
+    };
 
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
@@ -326,8 +346,11 @@ _.some = function(collection, iterator) {
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var myArray = Array.prototype.slice.call(arguments, 0);  
+    //alternate method: could also create a new array with only lat tow elements(arguments,2) and pass it to func.apply directly, func.apply(this, myArray)
+    var myVar = setTimeout(function(){func.apply(this, arguments); }, wait, myArray[2], myArray[3]);
+    return myVar;   
   };
-
 
   /**
    * ADVANCED COLLECTION OPERATIONS
